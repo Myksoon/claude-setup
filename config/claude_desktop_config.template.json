@@ -1,0 +1,13 @@
+{
+  "_comment": "TEMPLATE. Replace with the real file from scripts/backup-config.ps1. Fill command/args from the old laptop's config.",
+  "mcpServers": {
+    "Blender": {
+      "command": "<SET-ME>",
+      "args": []
+    },
+    "Roblox_Studio": {
+      "command": "<SET-ME>",
+      "args": []
+    }
+  }
+}
