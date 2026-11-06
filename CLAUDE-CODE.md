@@ -40,7 +40,7 @@ Optional: copy `ponytail-statusline.ps1` to `~/.claude/` and point `statusLine` 
 ## 3. Local skills (not from a marketplace)
 Copy every folder in `skills/` into `~/.claude/skills/`: `antislop*`, `graphify`, `unslop`, `roblox-dev-skill`.
 Merge `CLAUDE.md` into `~/.claude/CLAUDE.md` (graphify trigger; append, do not overwrite an existing file).
-graphify may need its Python package; follow `skills/graphify/SKILL.md` on first use.
+**Requires Python 3 on PATH** (`python3` must run, not the Microsoft Store shortcut on Windows). claude-reflect hooks call `python3` on every prompt, and graphify needs it too; without it you get "Python was not found" warnings. Install from python.org with "Add to PATH". For graphify, follow `skills/graphify/SKILL.md` on first use.
 
 ## 4. MCP: ASK THE USER FIRST
 Ask: "Do you want the MCP setup too (Roblox Studio)?" If no, stop here.
