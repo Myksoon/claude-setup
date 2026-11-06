@@ -1,0 +1,33 @@
+{
+  "snapshot_date": "2026-11-06",
+  "source_machine": { "name": "hxkawindows", "os": "win32", "arch": "x64", "claude_desktop": "4.23118.0" },
+  "plugins": [
+    { "name": "Design", "id": "plugin_01BJyUTWdE5wt92pvTVz4hdN", "enabled": true,
+      "skills": ["accessibility-review", "design-critique", "design-handoff", "design-system", "research-synthesis", "user-research", "ux-copy"] }
+  ],
+  "skills": {
+    "custom": [],
+    "builtin_enabled": ["docx", "xlsx", "pptx", "pdf", "docs", "google-workspace", "video-making", "deep-research",
+      "skill-creator", "import-memory", "morning", "computer-use", "chrome-browser", "built-in-browser"],
+    "disabled": []
+  },
+  "mods": [],
+  "local_mcp_servers": [
+    { "name": "Blender", "state": "running", "requires": "Blender + MCP add-on" },
+    { "name": "Roblox_Studio", "state": "running", "requires": "Roblox Studio + MCP plugin" }
+  ],
+  "cloud_connectors": [],
+  "device_tools": {
+    "preferred_browser": "built-in",
+    "built_in_browser": "available",
+    "claude_in_chrome": "available, off by default",
+    "computer_use": "available, off by default",
+    "connected_folders": []
+  },
+  "account_settings": {
+    "memory": true,
+    "reference_past_chats": true,
+    "cloud_network_package_installs": false,
+    "preferences": ["When delivering multiple output files, send them bundled as one single ZIP only."]
+  }
+}

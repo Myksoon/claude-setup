@@ -1,58 +1,45 @@
-# claude-setup
+# Claude Setup — migration kit
 
-Instructions for **Claude Code on a new device** to reproduce this setup. If you are Claude: read this file, then follow it step by step. Ask the user the question in step 4 before touching MCP.
+Snapshot of my Claude (desktop app + claude.ai account) setup, so a new laptop can be brought to the same state.
 
-Scope: skills, plugins, MCP only. Do not copy credentials, history, sessions or caches.
+- **Snapshot date:** 2026-11-06
+- **Source machine:** `hxkawindows` — Windows 11 x64, Claude Desktop 4.23118.0
+- **Account:** claude.ai (personal)
 
-## 1. Add marketplaces
-Run (or `/plugin marketplace add <repo>`):
-```
-claude plugin marketplace add anthropics/claude-plugins-official
-claude plugin marketplace add gamedev-skills/awesome-gamedev-agent-skills
-claude plugin marketplace add forrestchang/andrej-karpathy-skills
-claude plugin marketplace add latent-spaces/brag
-claude plugin marketplace add DietrichGebert/ponytail
-claude plugin marketplace add johnnyvizz/claude-kit
-claude plugin marketplace add bayramannakov/claude-reflect
-```
-(`claude-plugins-official` is usually preconfigured. `karpathy-skills` is registered but has no plugin enabled.)
+> **Claude Code (CLI) setup** (plugins, skills, MCP) is in [CLAUDE-CODE.md](CLAUDE-CODE.md). Claude on a new device: read that file.
 
-## 2. Install plugins (user scope)
-```
-claude plugin install gamedev@awesome-gamedev-agent-skills
-claude plugin install mattpocock-skills@claude-plugins-official
-claude plugin install superpowers@claude-plugins-official
-claude plugin install brag@brag
-claude plugin install ponytail@ponytail
-claude plugin install savvy-flow@claude-kit
-claude plugin install savvy-progress@claude-kit
-claude plugin install claude-reflect@claude-reflect-marketplace
-```
-Versions used are in `installed_plugins.json` (pinned by `gitCommitSha`; newer is fine unless the user wants exact).
+## What's in here
 
-Plugin options to set in `~/.claude/settings.json` under `pluginConfigs`:
-```json
-"ponytail@ponytail": {"options": {"ledger": true, "sendNames": true}},
-"savvy-progress@claude-kit": {"options": {"language": "auto", "autoOpen": "savvy"}}
-```
-Optional: copy `ponytail-statusline.ps1` to `~/.claude/` and point `statusLine` at it (Windows/PowerShell only).
+| Path | What it covers |
+|---|---|
+| `setup.json` | Machine-readable inventory of everything below |
+| `inventory/skills.md` | Skills on the account and their on/off state |
+| `inventory/plugins-and-mods.md` | Plugins (e.g. Design) and mods |
+| `inventory/mcp-and-connectors.md` | Local MCP servers, cloud connectors, browsers, computer use |
+| `inventory/settings.md` | Account/app settings worth re-applying (memory, browser, network…) |
+| `config/claude_desktop_config.template.json` | Template for the local MCP server config |
+| `scripts/backup-config.ps1` | Run on the **old** laptop: copies the real MCP config into `config/` |
+| `scripts/restore-config.ps1` | Run on the **new** laptop: installs the config into Claude |
 
-## 3. Local skills (not from a marketplace)
-Copy every folder in `skills/` into `~/.claude/skills/`: `antislop*`, `graphify`, `unslop`, `roblox-dev-skill`.
-Merge `CLAUDE.md` into `~/.claude/CLAUDE.md` (graphify trigger; append, do not overwrite an existing file).
-graphify may need its Python package; follow `skills/graphify/SKILL.md` on first use.
+## Migrating to the new laptop
 
-## 4. MCP: ASK THE USER FIRST
-Ask: "Do you want the MCP setup too (Roblox Studio)?" If no, stop here.
+1. **Install Claude Desktop** and sign in with the same account.
+   Everything account-level (skills, plugins, connectors, memory, preferences) syncs automatically —
+   use the inventory files only to *check* that it all came across.
+2. **Install the apps the local MCP servers talk to:** Blender and Roblox Studio
+   (see `inventory/mcp-and-connectors.md`), plus their MCP add-ons/plugins.
+3. **Copy the MCP config:**
+   - On the old laptop: `powershell -ExecutionPolicy Bypass -File scripts\backup-config.ps1`, then commit `config/claude_desktop_config.json`
+     (check it for API keys/tokens first — see "Secrets" below).
+   - On the new laptop: `git clone https://github.com/Myksoon/claude-setup.git`, then
+     `powershell -ExecutionPolicy Bypass -File scripts\restore-config.ps1`, and restart Claude.
+   - Fix any absolute paths in the config (e.g. `C:\Users\<old-user>\...`) to match the new machine.
+4. **Re-enable per-device things** that don't sync: Claude in Chrome extension, computer-use app grants,
+   built-in browser sign-ins, connected folders.
+5. Walk through `inventory/settings.md` and tick each item.
 
-If yes:
-- **Roblox_Studio** (user scope, stdio). Requires Roblox Studio installed; it ships `mcp.bat`.
-  - Windows: `claude mcp add Roblox_Studio --scope user -- cmd.exe /c "cd /d %LOCALAPPDATA%\Roblox && .\mcp.bat"`
-  - Other OS: not verified; check Roblox Studio's docs for the MCP launcher path.
-- claude.ai connectors (Claude Docs, Figma, Linear, Notion, Slack, Atlassian, Intercom) are account-level. They appear after signing in to the same claude.ai account and enabling them in claude.ai Settings > Connectors; each needs its own OAuth. Nothing to install.
+## Secrets
 
-## 5. Verify
-Restart Claude Code, run `/plugin` (8 plugins enabled) and check the skills list. With MCP: `claude mcp list` shows `Roblox_Studio`.
-
-## Files here
-`settings.json` (reference; has machine-specific Coucou hook paths, do NOT copy hooks), `installed_plugins.json`, `known_marketplaces.json` (reference), `skills/`, `CLAUDE.md`, `ponytail-statusline.ps1`.
+Never commit API keys. If `claude_desktop_config.json` has `env` values with tokens, replace them with
+`"<SET-ME>"` before committing, and keep the real values in a password manager.
+`.gitignore` already blocks `*.local.json` and `.env` files.
