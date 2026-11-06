@@ -1,0 +1,58 @@
+{
+  "claude-plugins-official": {
+    "source": {
+      "source": "github",
+      "repo": "anthropics/claude-plugins-official"
+    },
+    "installLocation": "C:\\Users\\andhi\\.claude\\plugins\\marketplaces\\claude-plugins-official",
+    "lastUpdated": "2026-11-06T02:09:06.083Z"
+  },
+  "awesome-gamedev-agent-skills": {
+    "source": {
+      "source": "github",
+      "repo": "gamedev-skills/awesome-gamedev-agent-skills"
+    },
+    "installLocation": "C:\\Users\\andhi\\.claude\\plugins\\marketplaces\\awesome-gamedev-agent-skills",
+    "lastUpdated": "2026-10-20T03:11:57.518Z"
+  },
+  "karpathy-skills": {
+    "source": {
+      "source": "github",
+      "repo": "forrestchang/andrej-karpathy-skills"
+    },
+    "installLocation": "C:\\Users\\andhi\\.claude\\plugins\\marketplaces\\karpathy-skills",
+    "lastUpdated": "2026-10-20T03:10:56.216Z"
+  },
+  "brag": {
+    "source": {
+      "source": "github",
+      "repo": "latent-spaces/brag"
+    },
+    "installLocation": "C:\\Users\\andhi\\.claude\\plugins\\marketplaces\\brag",
+    "lastUpdated": "2026-11-05T09:56:47.862Z"
+  },
+  "ponytail": {
+    "source": {
+      "source": "github",
+      "repo": "DietrichGebert/ponytail"
+    },
+    "installLocation": "C:\\Users\\andhi\\.claude\\plugins\\marketplaces\\ponytail",
+    "lastUpdated": "2026-11-05T14:50:11.592Z"
+  },
+  "claude-kit": {
+    "source": {
+      "source": "github",
+      "repo": "johnnyvizz/claude-kit"
+    },
+    "installLocation": "C:\\Users\\andhi\\.claude\\plugins\\marketplaces\\claude-kit",
+    "lastUpdated": "2026-11-06T02:01:16.935Z"
+  },
+  "claude-reflect-marketplace": {
+    "source": {
+      "source": "github",
+      "repo": "bayramannakov/claude-reflect"
+    },
+    "installLocation": "C:\\Users\\andhi\\.claude\\plugins\\marketplaces\\claude-reflect-marketplace",
+    "lastUpdated": "2026-11-06T02:13:10.400Z"
+  }
+}
